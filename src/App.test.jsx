@@ -1,8 +1,28 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import App from "./App";
 
 test("Test Header", () => {
 	render(<App />);
 	const headerElement = screen.getByText(/Auto Deploy Projei/i);
 	expect(headerElement).toBeInTheDocument();
+});
+
+test("Test Button Disabled State", () => {
+	render(<App />);
+	const buttonElement = screen.getByRole("button", { name: /Gönder/i });
+	expect(buttonElement).toBeDisabled();
+});
+
+test("Inputlar doldurulduğunda buton aktif olmalı ve silindiğinde pasif olmalı", () => {
+	render(<App />);
+	const buttonElement = screen.getByRole("button", { name: /Gönder/i });
+	const nameInput = screen.getByPlaceholderText(/İsim/i);
+	const surnameInput = screen.getByPlaceholderText(/Soyisim/i);
+
+	fireEvent.change(nameInput, { target: { value: "Furkan" } });
+	fireEvent.change(surnameInput, { target: { value: "Öger" } });
+	expect(buttonElement).toBeEnabled();
+
+	fireEvent.change(nameInput, { target: { value: "" } });
+	expect(buttonElement).toBeDisabled();
 });
