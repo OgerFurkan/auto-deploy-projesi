@@ -20,7 +20,7 @@ function App() {
 					<img src={reactLogo} className="logo react" alt="React logo" />
 				</a>
 			</div>
-			<h1>Auto Deploy Projei</h1>
+			<h1>Auto Deploy Projesi</h1>
 
 			<form action="">
 				<input
