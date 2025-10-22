@@ -3,7 +3,7 @@ import App from "./App";
 
 test("Test Header", () => {
 	render(<App />);
-	const headerElement = screen.getByText(/Auto Deploy Projesis/i);
+	const headerElement = screen.getByText(/Auto Deploy Projesi/i);
 	expect(headerElement).toBeInTheDocument();
 });
 
